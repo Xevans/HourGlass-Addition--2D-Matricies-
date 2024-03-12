@@ -1,0 +1,98 @@
+Goal: get the sum of each 'hour glass' in the 2D matrix.
+
+Example of Matrix:
+-9 -9 -9  1 1 1 
+ 0 -9  0  4 3 2
+-9 -9 -9  1 2 3
+ 0  0  8  6 6 0
+ 0  0  0 -2 0 0
+ 0  0  1  2 4 0
+
+Thought Process below:
+
+because the 2D array is 6x6 only 4 hour glasses can be made per row.
+The resulting matrix in this case will be a 4x4 matrix.
+
+the hour glass is the shape of the selection. We want the sum of each of those selections.
+
+For example:
+
+-63, -34, -9, 12, 
+-10,   0, 28, 23, 
+-27, -11, -2, 10, 
+  9,  17, 25, 18
+
+where -63 is a result of -9 + -9 + -9 + -9 + -9 + -9 + -9
+where -34 is the result of -9 + -9 + 1 + -9 + 0 + 4 + -9 + -9 + 1
+
+
+
+
+
+Algorithm:
+Ideally we would start at [1][1] (the first "center point") and translate right a total of 4 times per row. There will be a total of 4 rows traveled.
+
+How to determine the "center points" of each hour glass selection? The center points are just a point of reference and will be every internal index. so in a nested loop.
+ 
+Thought Process:
+where [i][j] is our "center point" or point of reference.
+
+Traversal will be handled by a nested loop:
+for i = 1; i < rows - 2; i++
+	for j = 2; j < col - 2; j++
+
+where sub_rows and sub_columns are constant values 4x4 since the matrix will always be 6x6, but since the matrix is a square, [rows - 2][cols - 2] will work as well where rows and cols are constant values.
+
+At each center point, we will get the:
+	- ([current row - 1][current col - 1])
+	- ([current row - 1][current col])
+	- ([current row - 1][current col + 1])
+	- ([current row][current col])
+	- ([current row + 1][current col - 1])
+	- ([current row + 1][current col])
+	- ([current row + 1][current col + 1])
+
+This translates to, get the:
+	- top left
+	- top center
+	- top right
+	- center
+	- bottom left
+	- bottom center
+	- bottom right
+
+add the value of each index
+if the value is greater than the current value of max value (initially 0) 
+	- write to that variable.
+loop
+
+
+
+Example Reference Table:
+[0][0] [0][1] [0][2] [0][3] [0][4] [0][5]
+[1][0] [1][1] [1][2] [1][3] [1][4] [1][5]
+[2][0] [2][1] [2][2] [2][3] [2][4] [2][5]
+[3][0] [3][1] [3][2] [3][3] [3][4] [3][5]
+[4][0] [4][1] [4][2] [4][3] [4][4] [4][5]
+[5][0] [5][1] [5][2] [5][3] [5][4] [5][5]
+
+
+paste bin:
+// want the sum of each hour glass selection
+    
+    // task 1, selecting an hourglass of items in the array.
+    // n is the max width of hourglass rows 1 and 3. 1 is the max of row 2
+    // k is the max height of the hourglass
+    
+    // try to divide the matrix into two halves
+    // the initial loop will create four hour glass on the top half
+    
+    int width = 3;
+    int mid_width = 1;
+    int aggregate_sum = 0;
+    int offset = 0; // offset will increment on each loop. add to index locations
+    
+    for (int i = 0; i < width; i++) {
+        aggregate_sum 
+    }
+
